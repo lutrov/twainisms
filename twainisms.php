@@ -121,4 +121,40 @@ function twainism_wordpress_version($text) {
 	return $text;
 }
 
+//
+// Update robots.txt file.
+//
+function twainism_robots_textfile($action) {
+	$path = sprintf('%s/robots.txt', rtrim(ABSPATH, '/'));
+	switch ($action) {
+		case 'install':
+			if (($fp = fopen($path, 'w'))) {
+				fwrite($fp, sprintf('Sitemap: %s/sitemap.xml', site_url()));
+				fclose($fp);
+			}
+			break;
+		case 'uninstall':
+			if (file_exists($path) == true) {
+				unlink($path);
+			}
+			break;
+	}
+}
+
+//
+// Register plugin activation hook.
+//
+register_activation_hook(__FILE__, 'twainism_activate');
+function twainism_activate() {
+	twainism_robots_textfile('install');
+}
+
+//
+// Register plugin deactivation hook.
+//
+register_deactivation_hook(__FILE__, 'twainism_deactivate');
+function twainism_deactivate() {
+	twainism_robots_textfile('uninstall');
+}
+
 ?>
