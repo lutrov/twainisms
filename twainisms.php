@@ -7,6 +7,8 @@ Author: Ivan Lutrov
 Version: 1.0
 */
 
+defined('ABSPATH') || die('Ahem.');
+
 //
 // Replace default Wordpress left footer message with a random Mark Twain quote.
 //
@@ -119,42 +121,6 @@ function twainism_wordpress_version($text) {
 	global $wp_version;
 	$text = sprintf('<em>Wordpress %s</em>', $wp_version);
 	return $text;
-}
-
-//
-// Update robots.txt file.
-//
-function twainism_robots_textfile($action) {
-	$path = sprintf('%s/robots.txt', rtrim(ABSPATH, '/'));
-	switch ($action) {
-		case 'install':
-			if (($fp = fopen($path, 'w'))) {
-				fwrite($fp, sprintf('Sitemap: %s/sitemap.xml', site_url()));
-				fclose($fp);
-			}
-			break;
-		case 'uninstall':
-			if (file_exists($path) == true) {
-				unlink($path);
-			}
-			break;
-	}
-}
-
-//
-// Register plugin activation hook.
-//
-register_activation_hook(__FILE__, 'twainism_activate');
-function twainism_activate() {
-	twainism_robots_textfile('install');
-}
-
-//
-// Register plugin deactivation hook.
-//
-register_deactivation_hook(__FILE__, 'twainism_deactivate');
-function twainism_deactivate() {
-	twainism_robots_textfile('uninstall');
 }
 
 ?>
