@@ -4,6 +4,7 @@
 Plugin Name: Twainisms
 Description: Enjoy the best Mark Twain quotes, right in your admin dashboard footer.
 Author: Ivan Lutrov
+Author URI: http://lutrov.com/
 Version: 1.2
 */
 
@@ -12,7 +13,7 @@ defined('ABSPATH') || die('Ahem.');
 //
 // Replace default Wordpress left footer message with a random Mark Twain quote.
 //
-add_filter('admin_footer_text', 'twainism_random_quotation', 88);
+add_filter('admin_footer_text', 'twainism_random_quotation', 16);
 function twainism_random_quotation($text) {
 	$quotes = array(
 		"A classic is something that everybody wants to have read and nobody wants to read.",
