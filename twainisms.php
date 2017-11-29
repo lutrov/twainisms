@@ -3,9 +3,10 @@
 /*
 Plugin Name: Twainisms
 Description: Enjoy the best Mark Twain quotes, right in your admin dashboard footer.
+Plugin URI: https://github.com/lutrov/twainisms
 Author: Ivan Lutrov
 Author URI: http://lutrov.com/
-Version: 1.2
+Version: 1.3
 */
 
 defined('ABSPATH') || die('Ahem.');
