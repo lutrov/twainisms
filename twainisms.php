@@ -6,7 +6,7 @@ Description: Enjoy the best Mark Twain quotes, right in your admin dashboard foo
 Plugin URI: https://github.com/lutrov/twainisms
 Author: Ivan Lutrov
 Author URI: http://lutrov.com/
-Version: 1.4
+Version: 1.5
 */
 
 defined('ABSPATH') || die('Ahem.');
@@ -116,7 +116,7 @@ function twainism_random_quotation($text) {
 add_filter('update_footer', 'twainism_wordpress_version', 11);
 function twainism_wordpress_version($text) {
 	global $wp_version;
-	$text = sprintf('<em>WordPress %s</em>', $wp_version);
+	$text = sprintf('<em title="PHP %s">WordPress %s</em>', phpversion(), $wp_version);
 	return $text;
 }
 
