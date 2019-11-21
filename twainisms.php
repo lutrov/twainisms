@@ -6,7 +6,7 @@ Description: Enjoy the best Mark Twain quotes, right in your admin dashboard foo
 Plugin URI: https://github.com/lutrov/twainisms
 Author: Ivan Lutrov
 Author URI: http://lutrov.com/
-Version: 1.5
+Version: 1.6
 */
 
 defined('ABSPATH') || die('Ahem.');
@@ -14,8 +14,8 @@ defined('ABSPATH') || die('Ahem.');
 //
 // Replace default Wordpress left footer message with a random Mark Twain quote.
 //
-add_filter('admin_footer_text', 'twainism_random_quotation', 16);
-function twainism_random_quotation($text) {
+add_filter('admin_footer_text', 'twainism_random_quotation_filter', 16, 1);
+function twainism_random_quotation_filter($text) {
 	$quotes = array(
 		"A classic is something that everybody wants to have read and nobody wants to read.",
 		"A habit cannot be tossed out the window, it must be coaxed down the stairs a step at a time.",
@@ -113,8 +113,8 @@ function twainism_random_quotation($text) {
 //
 // Modify default Wordpress right footer message.
 //
-add_filter('update_footer', 'twainism_wordpress_version', 11);
-function twainism_wordpress_version($text) {
+add_filter('update_footer', 'twainism_wordpress_version_filter', 11, 1);
+function twainism_wordpress_version_filter($text) {
 	global $wp_version;
 	$text = sprintf('<em title="PHP %s">WordPress %s</em>', phpversion(), $wp_version);
 	return $text;
